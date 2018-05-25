@@ -11,4 +11,11 @@
     <string name="grade">Grade:</string>
     <string name="water_temp">Water temp:</string>
     <string name="date_for_temp">Date for temp:</string>
+    <string name="bathing_site_name">Bathing site name</string>
+    <string name="bathing_site_description">Site description</string>
+    <string name="bathing_site_address">Site address</string>
+    <string name="bathing_site_latitude">Latitude</string>
+    <string name="bathing_site_longitude">Longitude</string>
+    <string name="bathing_site_water_temperature">Water temperature</string>
+    <string name="bathing_site_temperature_measurement_date">Measurement date</string>
 </resources>
