@@ -105,7 +105,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/bathing_site_latitude"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toStartOf="@+id/bathing_site_longitude_input_label"
         app:layout_constraintStart_toStartOf="@+id/bathing_site_latitude_input_label"
         app:layout_constraintTop_toBottomOf="@+id/bathing_site_latitude_input_label" />
@@ -116,7 +116,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/bathing_site_longitude"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned|numberDecimal"
         app:layout_constraintBaseline_toBaselineOf="@+id/bathing_site_latitude_input_field"
         app:layout_constraintEnd_toEndOf="@+id/bathing_site_longitude_input_label"
         app:layout_constraintStart_toStartOf="@+id/bathing_site_longitude_input_label" />
@@ -135,9 +135,10 @@
         android:id="@+id/bathing_site_rating_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:numStars="5"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="355dp" />
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_rating_label"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_rating_label" />
 
     <TextView
         android:id="@+id/bathing_site_water_temp_input_label"
@@ -168,12 +169,13 @@
         android:id="@+id/bathing_site_water_temp_input_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/bathing_site_water_temperature"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toEndOf="@+id/bathing_site_water_temp_input_label"
         app:layout_constraintStart_toStartOf="@+id/bathing_site_water_temp_input_label"
-        tools:layout_editor_absoluteY="449dp" />
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_water_temp_input_label" />
 
     <EditText
         android:id="@+id/bathing_site_date_for_temp_input_field"
