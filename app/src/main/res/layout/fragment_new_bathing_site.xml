@@ -147,7 +147,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/water_temp"
-        app:layout_constraintEnd_toStartOf="@+id/Date for temp:"
+        app:layout_constraintEnd_toStartOf="@+id/bathing_site_date_for_temp_input_label"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/bathing_site_rating_field"
         app:layout_constraintTop_toBottomOf="@+id/bathing_site_rating_field" />
