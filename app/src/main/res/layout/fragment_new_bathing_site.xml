@@ -160,7 +160,7 @@
         app:layout_constraintStart_toEndOf="@+id/bathing_site_water_temp_input_label" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/bathing_site_water_temp_input_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -170,12 +170,12 @@
         tools:layout_editor_absoluteY="449dp" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/bathing_site_date_for_temp_input_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText6"
+        app:layout_constraintBaseline_toBaselineOf="@+id/bathing_site_water_temp_input_field"
         app:layout_constraintEnd_toEndOf="@+id/bathing_site_date_for_temp_input_label"
         app:layout_constraintStart_toStartOf="@+id/bathing_site_date_for_temp_input_label" />
 
