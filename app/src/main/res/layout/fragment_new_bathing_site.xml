@@ -7,12 +7,176 @@
     tools:context=".NewBathingSiteFragment">
 
     <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
+        android:id="@+id/bathing_site_name_input_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Name:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/bathing_site_name_input_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_name_input_label"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_name_input_label"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_name_input_label" />
+
+    <TextView
+        android:id="@+id/bathing_site_description_input_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Description:"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_name_input_field"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_name_input_field"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_name_input_field" />
+
+    <EditText
+        android:id="@+id/bathing_site_description_input_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_description_input_label"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_description_input_label"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_description_input_label" />
+
+    <TextView
+        android:id="@+id/bathing_site_address_input_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Address:"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_description_input_field"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_description_input_field"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_description_input_field" />
+
+    <EditText
+        android:id="@+id/bathing_site_address_input_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_address_input_label"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_address_input_label"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_address_input_label" />
+
+    <TextView
+        android:id="@+id/bathing_site_latitude_input_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Latitude:"
+        app:layout_constraintEnd_toStartOf="@+id/bathing_site_longitude_input_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_address_input_field"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_address_input_field" />
+
+    <TextView
+        android:id="@+id/bathing_site_longitude_input_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Longitude:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/bathing_site_latitude_input_label"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_address_input_field"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bathing_site_latitude_input_label" />
+
+    <EditText
+        android:id="@+id/bathing_site_latitude_input_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toStartOf="@+id/bathing_site_longitude_input_label"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_latitude_input_label"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_latitude_input_label" />
+
+    <EditText
+        android:id="@+id/bathing_site_longitude_input_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintBaseline_toBaselineOf="@+id/bathing_site_latitude_input_field"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_longitude_input_label"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_longitude_input_label" />
+
+    <TextView
+        android:id="@+id/bathing_site_rating_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Grade:"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_longitude_input_field"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_latitude_input_field"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_latitude_input_field" />
+
+    <RatingBar
+        android:id="@+id/bathing_site_rating_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="355dp" />
+
+    <TextView
+        android:id="@+id/bathing_site_water_temp_input_label"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Water temp:"
+        app:layout_constraintEnd_toStartOf="@+id/Date for temp:"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_rating_field"
+        app:layout_constraintTop_toBottomOf="@+id/bathing_site_rating_field" />
+
+    <TextView
+        android:id="@+id/bathing_site_date_for_temp_input_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Date for temp:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/bathing_site_water_temp_input_label"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_rating_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bathing_site_water_temp_input_label" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_water_temp_input_label"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_water_temp_input_label"
+        tools:layout_editor_absoluteY="449dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText6"
+        app:layout_constraintEnd_toEndOf="@+id/bathing_site_date_for_temp_input_label"
+        app:layout_constraintStart_toStartOf="@+id/bathing_site_date_for_temp_input_label" />
+
 </android.support.constraint.ConstraintLayout>
