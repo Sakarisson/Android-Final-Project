@@ -1,5 +1,6 @@
 package se.miun.krsa1201.bathingsites;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +22,8 @@ public class NewBathingSiteFragment extends Fragment {
     private EditText _waterTemp;
     private EditText _dateForTemp;
 
+    private View _view;
+
     public void clear() {
         _name.setText("");
         _description.setText("");
@@ -32,15 +35,22 @@ public class NewBathingSiteFragment extends Fragment {
         _dateForTemp.setText("");
     }
 
-    private void init(View inflatedView) {
-        _name = inflatedView.findViewById(R.id.bathing_site_name_input_field);
-        _description = inflatedView.findViewById(R.id.bathing_site_description_input_field);
-        _address = inflatedView.findViewById(R.id.bathing_site_address_input_field);
-        _latitude = inflatedView.findViewById(R.id.bathing_site_latitude_input_field);
-        _longitude = inflatedView.findViewById(R.id.bathing_site_longitude_input_field);
-        _grade = inflatedView.findViewById(R.id.bathing_site_rating_field);
-        _waterTemp = inflatedView.findViewById(R.id.bathing_site_water_temp_input_field);
-        _dateForTemp = inflatedView.findViewById(R.id.bathing_site_date_for_temp_input_field);
+    private void init() {
+        _name = _view.findViewById(R.id.bathing_site_name_input_field);
+        _description = _view.findViewById(R.id.bathing_site_description_input_field);
+        _address = _view.findViewById(R.id.bathing_site_address_input_field);
+        _latitude = _view.findViewById(R.id.bathing_site_latitude_input_field);
+        _longitude = _view.findViewById(R.id.bathing_site_longitude_input_field);
+        _grade = _view.findViewById(R.id.bathing_site_rating_field);
+        _waterTemp = _view.findViewById(R.id.bathing_site_water_temp_input_field);
+        _dateForTemp = _view.findViewById(R.id.bathing_site_date_for_temp_input_field);
+    }
+
+    // TODO
+    private void addRequiredWarningToEditTextField(EditText field) {
+        Drawable x = _view.getResources().getDrawable(R.drawable.ic_launcher_background);
+        x.setBounds(0, 0, x.getIntrinsicWidth(), x.getIntrinsicHeight());
+        field.setCompoundDrawables(null, null, x, null);
     }
 
     public NewBathingSiteFragment() {
@@ -48,10 +58,10 @@ public class NewBathingSiteFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View inflatedView = inflater.inflate(R.layout.fragment_new_bathing_site, container, false);
-        if (inflatedView != null) {
-            init(inflatedView);
+        _view = inflater.inflate(R.layout.fragment_new_bathing_site, container, false);
+        if (_view != null) {
+            init();
         }
-        return inflatedView;
+        return _view;
     }
 }
