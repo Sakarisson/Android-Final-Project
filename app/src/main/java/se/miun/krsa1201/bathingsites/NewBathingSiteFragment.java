@@ -53,7 +53,15 @@ public class NewBathingSiteFragment extends Fragment {
         field.setCompoundDrawables(null, null, x, null);
     }
 
+    // TODO
+    // This returns true if form is valid according to assignment
+    // specifications. It acts as clientside form validation.
+    private boolean isValidForm() {
+        return true;
+    }
+
     public NewBathingSiteFragment() {
+
     }
 
     @Override
