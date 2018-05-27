@@ -35,6 +35,10 @@ public class NewBathingSiteFragment extends Fragment {
         _dateForTemp.setText("");
     }
 
+    public void save() {
+        boolean valid = isValidForm();
+    }
+
     private void init() {
         _name = _view.findViewById(R.id.bathing_site_name_input_field);
         _description = _view.findViewById(R.id.bathing_site_description_input_field);
@@ -53,11 +57,18 @@ public class NewBathingSiteFragment extends Fragment {
         field.setCompoundDrawables(null, null, x, null);
     }
 
+    private boolean coordinatesSet() {
+        return !(_latitude.getText().toString().equals("") || _longitude.getText().toString().equals(""));
+    }
+
     // TODO
     // This returns true if form is valid according to assignment
     // specifications. It acts as clientside form validation.
     private boolean isValidForm() {
-        return true;
+        boolean nameIsSet = !_name.getText().toString().equals("");
+        boolean coordinatesAreSet = coordinatesSet();
+        boolean addressIsSet = !_address.getText().toString().equals("");
+        return (nameIsSet && (coordinatesAreSet || addressIsSet));
     }
 
     public NewBathingSiteFragment() {

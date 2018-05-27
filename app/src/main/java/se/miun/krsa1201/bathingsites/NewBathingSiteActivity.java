@@ -37,6 +37,7 @@ public final class NewBathingSiteActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_save:
+                ((NewBathingSiteFragment) newBathingSiteFragment).save();
                 return true;
 
             default:
