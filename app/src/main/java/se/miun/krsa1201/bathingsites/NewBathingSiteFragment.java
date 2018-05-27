@@ -3,6 +3,8 @@ package se.miun.krsa1201.bathingsites;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ public class NewBathingSiteFragment extends Fragment {
 
     private View _view;
 
+    private TextWatcher _locationChangedWatcher;
+
     public void clear() {
         _name.setText("");
         _description.setText("");
@@ -37,24 +41,42 @@ public class NewBathingSiteFragment extends Fragment {
 
     public void save() {
         boolean valid = isValidForm();
+        if (valid) {
+            return;
+        }
     }
 
     private void init() {
+        _locationChangedWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean addressSet = !_address.getText().toString().equals("");
+                boolean coordinatesSet = coordinatesSet();
+                if (!addressSet && !coordinatesSet) {
+                    return;
+                }
+                _address.setError(null);
+                _latitude.setError(null);
+                _longitude.setError(null);
+            }
+        };
         _name = _view.findViewById(R.id.bathing_site_name_input_field);
         _description = _view.findViewById(R.id.bathing_site_description_input_field);
         _address = _view.findViewById(R.id.bathing_site_address_input_field);
+        _address.addTextChangedListener(_locationChangedWatcher);
         _latitude = _view.findViewById(R.id.bathing_site_latitude_input_field);
+        _latitude.addTextChangedListener(_locationChangedWatcher);
         _longitude = _view.findViewById(R.id.bathing_site_longitude_input_field);
+        _longitude.addTextChangedListener(_locationChangedWatcher);
         _grade = _view.findViewById(R.id.bathing_site_rating_field);
         _waterTemp = _view.findViewById(R.id.bathing_site_water_temp_input_field);
         _dateForTemp = _view.findViewById(R.id.bathing_site_date_for_temp_input_field);
-    }
-
-    // TODO
-    private void addRequiredWarningToEditTextField(EditText field) {
-        Drawable x = _view.getResources().getDrawable(R.drawable.ic_launcher_background);
-        x.setBounds(0, 0, x.getIntrinsicWidth(), x.getIntrinsicHeight());
-        field.setCompoundDrawables(null, null, x, null);
     }
 
     private boolean coordinatesSet() {
@@ -67,6 +89,15 @@ public class NewBathingSiteFragment extends Fragment {
         boolean nameIsSet = !_name.getText().toString().equals("");
         boolean coordinatesAreSet = coordinatesSet();
         boolean addressIsSet = !_address.getText().toString().equals("");
+        if (!nameIsSet) {
+            _name.setError("Name is required");
+        }
+        if ((!addressIsSet && !coordinatesAreSet)) {
+            String message = "Address or coordinates required";
+            _address.setError(message);
+            _latitude.setError(message);
+            _longitude.setError(message);
+        }
         return (nameIsSet && (coordinatesAreSet || addressIsSet));
     }
 
