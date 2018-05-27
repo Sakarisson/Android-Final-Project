@@ -61,7 +61,6 @@ public class NewBathingSiteFragment extends Fragment {
         return !(_latitude.getText().toString().equals("") || _longitude.getText().toString().equals(""));
     }
 
-    // TODO
     // This returns true if form is valid according to assignment
     // specifications. It acts as clientside form validation.
     private boolean isValidForm() {
