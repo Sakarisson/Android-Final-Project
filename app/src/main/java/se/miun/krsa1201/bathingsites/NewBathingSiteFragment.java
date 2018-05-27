@@ -1,6 +1,7 @@
 package se.miun.krsa1201.bathingsites;
 
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -42,8 +43,30 @@ public class NewBathingSiteFragment extends Fragment {
     public void save() {
         boolean valid = isValidForm();
         if (valid) {
-            return;
+            showSnackbar();
         }
+    }
+
+    private void showSnackbar() {
+        Snackbar snackbar = Snackbar.make(_view, "myCoordinatorLayout", Snackbar.LENGTH_LONG);
+        snackbar.setText(getSiteText());
+        snackbar.show();
+    }
+
+    private String getSiteText() {
+        String siteText = "";
+        siteText += "Name: " + getFieldText(_name) + "\n";
+        siteText += "Description: " + getFieldText(_description) + "\n";
+        siteText += "Address: " + getFieldText(_address) + "\n";
+        siteText += "Coordinates: " + getFieldText(_latitude) + ", " + getFieldText(_longitude) + "\n";
+        siteText += "Grade: " + _grade.getRating() + "\n";
+        siteText += "Water temp: " + getFieldText(_waterTemp) + "\n";
+        siteText += "Date for temp" + getFieldText(_dateForTemp) + "\n";
+        return siteText;
+    }
+
+    private String getFieldText(EditText field) {
+        return field.getText().toString();
     }
 
     private void init() {
@@ -77,6 +100,7 @@ public class NewBathingSiteFragment extends Fragment {
         _grade = _view.findViewById(R.id.bathing_site_rating_field);
         _waterTemp = _view.findViewById(R.id.bathing_site_water_temp_input_field);
         _dateForTemp = _view.findViewById(R.id.bathing_site_date_for_temp_input_field);
+        showSnackbar();
     }
 
     private boolean coordinatesSet() {
