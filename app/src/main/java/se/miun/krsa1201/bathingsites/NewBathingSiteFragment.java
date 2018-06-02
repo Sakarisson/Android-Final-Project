@@ -1,5 +1,6 @@
 package se.miun.krsa1201.bathingsites;
 
+import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -47,6 +48,15 @@ public class NewBathingSiteFragment extends Fragment {
         if (valid) {
             showSnackbar();
         }
+    }
+
+    public void showWeather() {
+        LayoutInflater inflater = getLayoutInflater();
+        View weatherLayout = inflater.inflate(R.layout.current_weather_dialog, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        alert.setView(weatherLayout);
+        AlertDialog dialog = alert.create();
+        dialog.show();
     }
 
     private void showSnackbar() {

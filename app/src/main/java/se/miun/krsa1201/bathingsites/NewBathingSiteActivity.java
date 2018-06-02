@@ -40,6 +40,10 @@ public final class NewBathingSiteActivity extends AppCompatActivity {
                 ((NewBathingSiteFragment) newBathingSiteFragment).save();
                 return true;
 
+            case R.id.action_weather:
+                ((NewBathingSiteFragment) newBathingSiteFragment).showWeather();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
 
