@@ -1,6 +1,7 @@
 package se.miun.krsa1201.bathingsites;
 
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -48,8 +50,11 @@ public class NewBathingSiteFragment extends Fragment {
     }
 
     private void showSnackbar() {
-        Snackbar snackbar = Snackbar.make(_view, "myCoordinatorLayout", Snackbar.LENGTH_LONG);
-        snackbar.setText(getSiteText());
+        Snackbar snackbar = Snackbar.make(_view, getSiteText(), Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+
+        TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setMaxLines(8);
         snackbar.show();
     }
 
