@@ -2,6 +2,7 @@ package se.miun.krsa1201.bathingsites;
 
 import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -51,12 +56,20 @@ public class NewBathingSiteFragment extends Fragment {
     }
 
     public void showWeather() {
-        LayoutInflater inflater = getLayoutInflater();
-        View weatherLayout = inflater.inflate(R.layout.current_weather_dialog, null);
-        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-        alert.setView(weatherLayout);
-        AlertDialog dialog = alert.create();
-        dialog.show();
+        try {
+            LayoutInflater inflater = getLayoutInflater();
+            View weatherLayout = inflater.inflate(R.layout.current_weather_dialog, null);
+            InputStream is = (InputStream) new URL("http://icons.wxug.com/i/c/k/partlycloudy.gif").getContent();
+            Drawable d = Drawable.createFromStream(is, "weather");
+            ImageView test = weatherLayout.findViewById(R.id.weather_image);
+            test.setImageDrawable(d);
+            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            alert.setView(weatherLayout);
+            AlertDialog dialog = alert.create();
+            dialog.show();
+        } catch (Exception e) {
+            int a = 1;
+        }
     }
 
     private void showSnackbar() {
