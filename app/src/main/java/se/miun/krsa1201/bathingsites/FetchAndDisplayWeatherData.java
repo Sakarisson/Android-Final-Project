@@ -1,24 +1,23 @@
 package se.miun.krsa1201.bathingsites;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.WeakHashMap;
 
 public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
     private View weatherLayout;
     private URL apiEndpoint;
+    private ProgressDialog loadingDialog;
     private LocationWeatherData data;
 
     public FetchAndDisplayWeatherData(Context context, View weatherLayout) {
@@ -30,6 +29,9 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        loadingDialog = new ProgressDialog(context);
+        loadingDialog.setTitle("Getting current weather...");
+        loadingDialog.show();
     }
 
     @Override
@@ -62,6 +64,7 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
     }
 
     protected void onPostExecute(LocationWeatherData data) {
+        loadingDialog.dismiss();
         addWeatherToView(data, weatherLayout);
     }
 
