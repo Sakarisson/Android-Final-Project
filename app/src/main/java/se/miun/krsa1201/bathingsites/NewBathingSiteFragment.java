@@ -55,14 +55,34 @@ public class NewBathingSiteFragment extends Fragment {
         }
     }
 
+    /**
+     * According to the assignment, the coordinates should be given as latitude|latitude.
+     * To me this seems odd, as I would have expected latitude|longitude, but in this implementation
+     * I made it the way it's asked.
+     */
+    private String coordinatesString() {
+        return latitude.getText().toString() + "|" + latitude.getText().toString();
+    }
+
     public void showWeather() {
+        LayoutInflater inflater = getLayoutInflater();
         try {
-            LayoutInflater inflater = getLayoutInflater();
             View weatherLayout = inflater.inflate(R.layout.current_weather_dialog, null);
+            String url = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
+            if (coordinatesSet() || !address.getText().toString().equals("")) {
+                url += "location=";
+                url += coordinatesSet() ? coordinatesString() : address.getText().toString();
+            } else {
+                throw new Exception("Invalid location");
+            }
             FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext(), weatherLayout);
-            task.execute("http://dt031g.programvaruteknik.nu/badplatser/weather.php?location=Laajaniitynkuja");
+            task.execute(url);
         } catch (Exception e) {
-            int a = 1;
+            View unavailableLayout = inflater.inflate(R.layout.current_weather_unavailable_dialog, null);
+            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            alert.setView(unavailableLayout);
+            AlertDialog dialog = alert.create();
+            dialog.show();
         }
     }
 

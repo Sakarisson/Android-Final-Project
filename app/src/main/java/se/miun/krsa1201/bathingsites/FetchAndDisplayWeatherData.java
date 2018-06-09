@@ -16,7 +16,6 @@ import java.net.URL;
 public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
     private View weatherLayout;
-    private URL apiEndpoint;
     private ProgressDialog loadingDialog;
     private LocationWeatherData data;
 
@@ -37,7 +36,7 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
     @Override
     protected LocationWeatherData doInBackground(String... apiEndpointUrl) {
         try {
-            apiEndpoint = new URL(apiEndpointUrl[0]);
+            URL apiEndpoint = new URL(apiEndpointUrl[0]);
             HttpURLConnection conn = (HttpURLConnection) apiEndpoint.openConnection();
             conn.setConnectTimeout(60000); // timing out in a minute
 
