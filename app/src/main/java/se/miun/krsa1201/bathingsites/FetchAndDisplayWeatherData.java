@@ -2,20 +2,23 @@ package se.miun.krsa1201.bathingsites;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
+import android.view.View;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.WeakHashMap;
 
 public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
+    private View rootView;
     private URL apiEndpoint;
     private LocationWeatherData data;
 
-    public FetchAndDisplayWeatherData(Context context) {
+    public FetchAndDisplayWeatherData(Context context, View rootView) {
         this.context = context;
+        this.rootView = rootView;
         data = new LocationWeatherData();
     }
 
@@ -51,6 +54,10 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
             return null;
         }
         return data;
+    }
+
+    protected void onPostExecute(LocationWeatherData data) {
+        int a = 1;
     }
 
     private String trimLine(String line) {

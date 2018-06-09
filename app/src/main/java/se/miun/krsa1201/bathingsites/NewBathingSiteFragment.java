@@ -67,7 +67,7 @@ public class NewBathingSiteFragment extends Fragment {
             alert.setView(weatherLayout);
             AlertDialog dialog = alert.create();
             dialog.show();*/
-            FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext());
+            FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext(), view);
             task.execute("http://dt031g.programvaruteknik.nu/badplatser/weather.php");
         } catch (Exception e) {
             int a = 1;
