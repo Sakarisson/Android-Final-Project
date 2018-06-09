@@ -68,6 +68,9 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
     }
 
     private void addWeatherToView(LocationWeatherData data, View view) {
+        if (data == null) {
+            return;
+        }
         TextView condition = view.findViewById(R.id.weather_visibility);
         condition.setText(data.getCondition());
         TextView degrees = view.findViewById(R.id.weather_degrees);
@@ -80,9 +83,13 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
         dialog.show();
     }
 
-    private String trimLine(String line) {
+    private String trimLine(String line) throws Exception {
         int firstColonIndex = line.indexOf(':') + 1;
         int breakLineStart = line.length() - 4;
-        return line.substring(firstColonIndex, breakLineStart);
+        String value = line.substring(firstColonIndex, breakLineStart);
+        if (value.equals("")) {
+            throw new Exception("Unable to get values");
+        }
+        return value;
     }
 }
