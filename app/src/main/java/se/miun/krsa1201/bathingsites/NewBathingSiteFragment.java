@@ -67,7 +67,6 @@ public class NewBathingSiteFragment extends Fragment {
     public void showWeather() {
         LayoutInflater inflater = getLayoutInflater();
         try {
-            View weatherLayout = inflater.inflate(R.layout.current_weather_dialog, null);
             String url = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
             if (coordinatesSet() || !address.getText().toString().equals("")) {
                 url += "?location=";
