@@ -42,9 +42,12 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
             data.setWindKph(trimLine(in.readLine()));
             data.setImage(trimLine(in.readLine()));
 
+
             in.close();
         } catch (Exception e) {
-            int a = 1;
+            System.out.println("Unable to fetch weather data");
+            System.out.println(e.getMessage());
+            return null;
         }
         return "Done.";
     }

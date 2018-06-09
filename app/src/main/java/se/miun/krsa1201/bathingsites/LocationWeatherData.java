@@ -1,91 +1,107 @@
 package se.miun.krsa1201.bathingsites;
 
+import android.graphics.drawable.Drawable;
+
+import java.io.InputStream;
+import java.net.URL;
+
 /**
  * Simple class to contain all the different values obtained from the API request.
  * Example endpoint: http://dt031g.programvaruteknik.nu/badplatser/weather.php
  */
 public final class LocationWeatherData {
-    private String _address;
-    private String _lat;
-    private String _lon;
-    private String _condition;
-    private String _temp_c;
-    private String _humidity;
-    private String _wind_degrees;
-    private String _wind_kph;
-    private String _image;
+    private String address;
+    private String lat;
+    private String lon;
+    private String condition;
+    private String tempC;
+    private String humidity;
+    private String windDegrees;
+    private String windKph;
+    private String imageLink;
+    private Drawable imageDrawable;
 
     public LocationWeatherData() {}
 
     public String getAddress() {
-        return _address;
+        return address;
     }
 
-    public void setAddress(String _address) {
-        this._address = _address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getLat() {
-        return _lat;
+        return lat;
     }
 
-    public void setLat(String _lat) {
-        this._lat = _lat;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
     public String getLon() {
-        return _lon;
+        return lon;
     }
 
-    public void setLon(String _lon) {
-        this._lon = _lon;
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 
     public String getCondition() {
-        return _condition;
+        return condition;
     }
 
-    public void setCondition(String _condition) {
-        this._condition = _condition;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
-    public String getTemp_c() {
-        return _temp_c;
+    public String getTempC() {
+        return tempC;
     }
 
-    public void setTempC(String _temp_c) {
-        this._temp_c = _temp_c;
+    public void setTempC(String tempC) {
+        this.tempC = tempC;
     }
 
     public String getHumidity() {
-        return _humidity;
+        return humidity;
     }
 
-    public void setHumidity(String _humidity) {
-        this._humidity = _humidity;
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
     }
 
     public String getWindDegrees() {
-        return _wind_degrees;
+        return windDegrees;
     }
 
-    public void setWindDegrees(String _wind_degrees) {
-        this._wind_degrees = _wind_degrees;
+    public void setWindDegrees(String windDegrees) {
+        this.windDegrees = windDegrees;
     }
 
     public String getWindKph() {
-        return _wind_kph;
+        return windKph;
     }
 
-    public void setWindKph(String _wind_kph) {
-        this._wind_kph = _wind_kph;
+    public void setWindKph(String windKph) {
+        this.windKph = windKph;
     }
 
-    public String getImage() {
-        return _image;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setImage(String _image) {
-        this._image = _image;
+    public void setImage(String imageLink) {
+        this.imageLink = imageLink;
+        try {
+            InputStream is = (InputStream) new URL(imageLink).getContent();
+            imageDrawable = Drawable.createFromStream(is, "weather");
+        } catch (Exception e) {
+            System.out.println("Unable to set image link");
+        }
+    }
+
+    public Drawable getImageDrawable() {
+        return imageDrawable;
     }
 }
