@@ -2,13 +2,14 @@ package se.miun.krsa1201.bathingsites;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, String> {
+public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
     private URL apiEndpoint;
     private LocationWeatherData data;
@@ -24,7 +25,7 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
     }
 
     @Override
-    protected String doInBackground(String... apiEndpointUrl) {
+    protected LocationWeatherData doInBackground(String... apiEndpointUrl) {
         try {
             apiEndpoint = new URL(apiEndpointUrl[0]);
             HttpURLConnection conn = (HttpURLConnection) apiEndpoint.openConnection();
@@ -49,7 +50,7 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
             System.out.println(e.getMessage());
             return null;
         }
-        return "Done.";
+        return data;
     }
 
     private String trimLine(String line) {
