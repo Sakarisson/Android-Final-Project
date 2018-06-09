@@ -7,7 +7,11 @@ import java.net.URL;
 
 /**
  * Simple class to contain all the different values obtained from the API request.
- * Example endpoint: http://dt031g.programvaruteknik.nu/badplatser/weather.php
+ * Example endpoint: http://dt031g.programvaruteknik.nu/badplatser/weather.php.
+ * This class contains methods for set and get all the lines of data in the
+ * assignment API. However, most of these methods are not used in this project.
+ * Best practice would probably dictate that these methods should not be implemented
+ * without being used.
  */
 public final class LocationWeatherData {
     private String address;
