@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,13 +16,13 @@ import java.net.URL;
 
 public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
-    private View weatherLayout;
+    private LayoutInflater inflater;
     private ProgressDialog loadingDialog;
     private LocationWeatherData data;
 
-    public FetchAndDisplayWeatherData(Context context, View weatherLayout) {
+    public FetchAndDisplayWeatherData(Context context, LayoutInflater inflater) {
         this.context = context;
-        this.weatherLayout = weatherLayout;
+        this.inflater = inflater;
         data = new LocationWeatherData();
     }
 
@@ -64,30 +65,34 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
 
     protected void onPostExecute(LocationWeatherData data) {
         loadingDialog.dismiss();
-        addWeatherToView(data, weatherLayout);
+        addWeatherToView(data, inflater);
     }
 
-    private void addWeatherToView(LocationWeatherData data, View view) {
+    private void addWeatherToView(LocationWeatherData data, LayoutInflater inflater) {
+        View weatherView;
         if (data == null) {
-            return;
+            weatherView = inflater.inflate(R.layout.current_weather_unavailable_dialog, null);
+        } else {
+            weatherView = inflater.inflate(R.layout.current_weather_dialog, null);
+            TextView condition = weatherView.findViewById(R.id.weather_visibility);
+            condition.setText(data.getCondition());
+            TextView degrees = weatherView.findViewById(R.id.weather_degrees);
+            degrees.setText(data.getTempC());
+            ImageView weatherImage = weatherView.findViewById(R.id.weather_image);
+            weatherImage.setImageDrawable(data.getImageDrawable());
         }
-        TextView condition = view.findViewById(R.id.weather_visibility);
-        condition.setText(data.getCondition());
-        TextView degrees = view.findViewById(R.id.weather_degrees);
-        degrees.setText(data.getTempC());
-        ImageView weatherImage = view.findViewById(R.id.weather_image);
-        weatherImage.setImageDrawable(data.getImageDrawable());
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setView(view);
+        alert.setView(weatherView);
         AlertDialog dialog = alert.create();
         dialog.show();
     }
 
     private String trimLine(String line) throws Exception {
+        boolean addressField = line.contains("address");
         int firstColonIndex = line.indexOf(':') + 1;
         int breakLineStart = line.length() - 4;
         String value = line.substring(firstColonIndex, breakLineStart);
-        if (value.equals("")) {
+        if (value.equals("") && !addressField) {
             throw new Exception("Unable to get values");
         }
         return value;

@@ -75,14 +75,10 @@ public class NewBathingSiteFragment extends Fragment {
             } else {
                 throw new Exception("Invalid location");
             }
-            FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext(), weatherLayout);
+            FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext(), inflater);
             task.execute(url);
         } catch (Exception e) {
-            View unavailableLayout = inflater.inflate(R.layout.current_weather_unavailable_dialog, null);
-            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-            alert.setView(unavailableLayout);
-            AlertDialog dialog = alert.create();
-            dialog.show();
+            System.out.println(e.getMessage());
         }
     }
 
