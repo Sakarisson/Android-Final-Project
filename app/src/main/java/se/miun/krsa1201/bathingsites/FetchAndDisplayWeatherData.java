@@ -1,10 +1,15 @@
 package se.miun.krsa1201.bathingsites;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -12,13 +17,13 @@ import java.util.WeakHashMap;
 
 public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
-    private View rootView;
+    private View weatherLayout;
     private URL apiEndpoint;
     private LocationWeatherData data;
 
-    public FetchAndDisplayWeatherData(Context context, View rootView) {
+    public FetchAndDisplayWeatherData(Context context, View weatherLayout) {
         this.context = context;
-        this.rootView = rootView;
+        this.weatherLayout = weatherLayout;
         data = new LocationWeatherData();
     }
 
@@ -57,7 +62,20 @@ public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer,
     }
 
     protected void onPostExecute(LocationWeatherData data) {
-        int a = 1;
+        addWeatherToView(data, weatherLayout);
+    }
+
+    private void addWeatherToView(LocationWeatherData data, View view) {
+        TextView condition = view.findViewById(R.id.weather_visibility);
+        condition.setText(data.getCondition());
+        TextView degrees = view.findViewById(R.id.weather_degrees);
+        degrees.setText(data.getTempC());
+        ImageView weatherImage = view.findViewById(R.id.weather_image);
+        weatherImage.setImageDrawable(data.getImageDrawable());
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(view);
+        AlertDialog dialog = alert.create();
+        dialog.show();
     }
 
     private String trimLine(String line) {

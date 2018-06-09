@@ -56,7 +56,7 @@ public final class LocationWeatherData {
     }
 
     public String getTempC() {
-        return tempC;
+        return tempC + "°";
     }
 
     public void setTempC(String tempC) {

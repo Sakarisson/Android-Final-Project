@@ -57,18 +57,10 @@ public class NewBathingSiteFragment extends Fragment {
 
     public void showWeather() {
         try {
-            /*LayoutInflater inflater = getLayoutInflater();
+            LayoutInflater inflater = getLayoutInflater();
             View weatherLayout = inflater.inflate(R.layout.current_weather_dialog, null);
-            InputStream is = (InputStream) new URL("http://icons.wxug.com/i/c/k/partlycloudy.gif").getContent();
-            Drawable d = Drawable.createFromStream(is, "weather");
-            ImageView test = weatherLayout.findViewById(R.id.weather_image);
-            test.setImageDrawable(d);
-            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-            alert.setView(weatherLayout);
-            AlertDialog dialog = alert.create();
-            dialog.show();*/
-            FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext(), view);
-            task.execute("http://dt031g.programvaruteknik.nu/badplatser/weather.php");
+            FetchAndDisplayWeatherData task = new FetchAndDisplayWeatherData(getContext(), weatherLayout);
+            task.execute("http://dt031g.programvaruteknik.nu/badplatser/weather.php?location=Laajaniitynkuja");
         } catch (Exception e) {
             int a = 1;
         }
