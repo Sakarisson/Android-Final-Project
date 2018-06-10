@@ -14,6 +14,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Simple asyncTask class that fetches the current weather from a certain URL.
+ * The data will be populated in the LocationWeatherData class.
+ * At the moment, the data needs to be formatted exactly like in the given assignment
+ * URL, meaning the same exact order. In hindsight, I should have some sort of key-value
+ * list to fetch the individual values. This would have made it still work correctly no
+ * matter the order of the list.
+ */
 public final class FetchAndDisplayWeatherData extends AsyncTask<String, Integer, LocationWeatherData> {
     private Context context;
     private LayoutInflater inflater;
