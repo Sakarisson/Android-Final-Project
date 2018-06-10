@@ -1,5 +1,6 @@
 package se.miun.krsa1201.bathingsites;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,9 @@ public final class NewBathingSiteActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_settings:
-                ((NewBathingSiteFragment) newBathingSiteFragment).showSettings();
+                // ((NewBathingSiteFragment) newBathingSiteFragment).showSettings();
+                Intent i = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(i);
                 return true;
 
             default:
