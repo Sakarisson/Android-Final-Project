@@ -16,6 +16,7 @@ public final class NewBathingSiteSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_bathing_site_settings);
         sp = getSharedPreferences("API", Context.MODE_PRIVATE);
-        selectedEndpoint = sp.getString("ENDPOINT_URL", )
+        selectedEndpoint = sp.getString("ENDPOINT_URL", defaultUrl);
+        int a = 1;
     }
 }

@@ -55,15 +55,6 @@ public class NewBathingSiteFragment extends Fragment {
         }
     }
 
-    /**
-     * According to the assignment, the coordinates should be given as latitude|latitude.
-     * To me this seems odd, so I have in this implementation made the assumption that
-     * there was a mistake in the specification.
-     */
-    private String coordinatesString() {
-        return latitude.getText().toString() + "|" + longitude.getText().toString();
-    }
-
     public void showWeather() {
         LayoutInflater inflater = getLayoutInflater();
         try {
@@ -79,6 +70,24 @@ public class NewBathingSiteFragment extends Fragment {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void showSettings() {
+        LayoutInflater inflater = getLayoutInflater();
+        View settingsView = inflater.inflate(R.layout.new_bathing_site_settings, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        alert.setView(settingsView);
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
+
+    /**
+     * According to the assignment, the coordinates should be given as latitude|latitude.
+     * To me this seems odd, so I have in this implementation made the assumption that
+     * there was a mistake in the specification.
+     */
+    private String coordinatesString() {
+        return latitude.getText().toString() + "|" + longitude.getText().toString();
     }
 
     private void showSnackbar() {
