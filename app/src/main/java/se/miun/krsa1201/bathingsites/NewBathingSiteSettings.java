@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 public final class NewBathingSiteSettings extends AppCompatActivity {
     private SharedPreferences sp;
     private String selectedEndpoint = null;
-
     private String defaultUrl = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
 
     @Override

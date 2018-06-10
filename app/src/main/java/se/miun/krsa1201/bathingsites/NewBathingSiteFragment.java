@@ -1,6 +1,8 @@
 package se.miun.krsa1201.bathingsites;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.StrictMode;
 import android.support.design.widget.CoordinatorLayout;
@@ -12,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -37,6 +40,10 @@ public class NewBathingSiteFragment extends Fragment {
 
     private TextWatcher locationChangedWatcher;
 
+    private SharedPreferences apiPreferences;
+
+    private String defaultApiEndpoint = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
+
     public void clear() {
         name.setText("");
         description.setText("");
@@ -58,7 +65,7 @@ public class NewBathingSiteFragment extends Fragment {
     public void showWeather() {
         LayoutInflater inflater = getLayoutInflater();
         try {
-            String url = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
+            String url = getUrlPreference();
             if (coordinatesSet() || !address.getText().toString().equals("")) {
                 url += "?location=";
                 url += coordinatesSet() ? coordinatesString() : address.getText().toString();
@@ -73,12 +80,53 @@ public class NewBathingSiteFragment extends Fragment {
     }
 
     public void showSettings() {
+        // Set up settings dialog
         LayoutInflater inflater = getLayoutInflater();
         View settingsView = inflater.inflate(R.layout.new_bathing_site_settings, null);
+
+        final EditText endpointInput = settingsView.findViewById(R.id.new_bathing_site_settings_url_field);
+        endpointInput.setText(getUrlPreference());
+
+        endpointInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                setUrlPreference(s.toString());
+            }
+        });
+
+        Button resetButton = settingsView.findViewById(R.id.reset_button);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setUrlPreference(defaultApiEndpoint);
+                endpointInput.setText(getUrlPreference());
+            }
+        });
+
         AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
         alert.setView(settingsView);
         AlertDialog dialog = alert.create();
         dialog.show();
+    }
+
+    private void setUrlPreference(String url) {
+        SharedPreferences.Editor editor = apiPreferences.edit();
+        editor.putString("ENDPOINT_URL", url);
+        editor.apply();
+    }
+
+    private String getUrlPreference() {
+        return apiPreferences.getString("ENDPOINT_URL", defaultApiEndpoint);
     }
 
     /**
@@ -146,7 +194,8 @@ public class NewBathingSiteFragment extends Fragment {
         grade = view.findViewById(R.id.bathing_site_rating_field);
         waterTemp = view.findViewById(R.id.bathing_site_water_temp_input_field);
         dateForTemp = view.findViewById(R.id.bathing_site_date_for_temp_input_field);
-        showSnackbar();
+
+        apiPreferences = getContext().getSharedPreferences("API", Context.MODE_PRIVATE);
     }
 
     private boolean coordinatesSet() {
@@ -172,7 +221,6 @@ public class NewBathingSiteFragment extends Fragment {
     }
 
     public NewBathingSiteFragment() {
-
     }
 
     @Override
